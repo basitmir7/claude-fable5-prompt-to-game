@@ -5,7 +5,7 @@
 
 ### 1. Prompt - "Create a 3D game using HTML, CSS and JavaScript"
 
-#### Output (Code Provided in Description)
+#### Output (Code Provided)
 
 Here's **Abyss Drift**, a 3D deep-sea dodge game in a single HTML file (Three.js for rendering, plain CSS and JS for everything else).
 
@@ -18,7 +18,7 @@ Speed ramps up the deeper you go, and your depth in meters is your score, with a
 
 ### 2. Prompt - "Create a 3D game using C++"
 
-#### Output
+#### Output (Code Provided)
 
 **ABYSS MAZE** - a 3D first-person maze game for the terminal.
 
