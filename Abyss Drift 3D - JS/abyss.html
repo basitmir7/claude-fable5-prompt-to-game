@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Abyss Drift</title>
+<style>
+  :root{
+    --ink:#04101c;
+    --glow:#5ef2d6;
+    --glow-soft:rgba(94,242,214,.35);
+    --coral:#ff7e6b;
+    --text:#cfe9e2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:var(--ink);font-family:"Trebuchet MS","Segoe UI",sans-serif;color:var(--text)}
+  #game{position:fixed;inset:0;display:block}
+
+  .hud{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;padding:18px 22px;pointer-events:none;z-index:5}
+  .hud .stat{text-align:left}
+  .hud .stat.right{text-align:right}
+  .hud .label{font-size:10px;letter-spacing:3px;text-transform:uppercase;opacity:.55}
+  .hud .value{font-size:30px;font-weight:700;color:var(--glow);text-shadow:0 0 18px var(--glow-soft);font-variant-numeric:tabular-nums}
+
+  .overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(ellipse at 50% 40%, rgba(8,40,56,.55), rgba(2,8,16,.88));z-index:10;text-align:center;padding:24px;transition:opacity .4s ease}
+  .overlay.hidden{opacity:0;pointer-events:none}
+  .overlay h1{font-size:clamp(40px,9vw,84px);font-weight:800;letter-spacing:.06em;color:#eafff9;text-shadow:0 0 30px var(--glow-soft),0 0 90px rgba(94,242,214,.25)}
+  .overlay h1 span{color:var(--glow)}
+  .overlay p{max-width:420px;line-height:1.6;opacity:.8;font-size:15px}
+  .overlay .keys{display:flex;gap:10px;margin-top:4px}
+  .overlay kbd{border:1px solid rgba(94,242,214,.4);border-radius:6px;padding:6px 12px;font-size:13px;color:var(--glow);background:rgba(94,242,214,.06)}
+  .overlay button{margin-top:14px;pointer-events:auto;cursor:pointer;font:inherit;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);background:var(--glow);border:none;border-radius:999px;padding:14px 44px;font-weight:700;box-shadow:0 0 30px var(--glow-soft);transition:transform .15s ease}
+  .overlay button:hover{transform:scale(1.05)}
+  .overlay button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .overlay .final{font-size:20px}
+  .overlay .final b{color:var(--coral);font-size:34px;display:block;margin-top:4px;text-shadow:0 0 20px rgba(255,126,107,.5)}
+  .overlay .best{font-size:13px;opacity:.6;letter-spacing:2px;text-transform:uppercase}
+
+  #vignette{position:fixed;inset:0;pointer-events:none;z-index:4;box-shadow:inset 0 0 180px rgba(0,0,0,.75)}
+  #hurt{position:fixed;inset:0;pointer-events:none;z-index:6;background:radial-gradient(ellipse at center, transparent 55%, rgba(255,90,70,.55));opacity:0;transition:opacity .12s}
+
+  .hint{position:fixed;bottom:16px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.4;z-index:5;pointer-events:none}
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="vignette"></div>
+<div id="hurt"></div>
+
+<div class="hud">
+  <div class="stat"><div class="label">Depth</div><div class="value" id="score">0 m</div></div>
+  <div class="stat right"><div class="label">Best</div><div class="value" id="best">0 m</div></div>
+</div>
+<div class="hint" id="hint">Arrows / WASD to swim &middot; touch and drag on mobile</div>
+
+<div class="overlay" id="startScreen">
+  <h1>ABYSS <span>DRIFT</span></h1>
+  <p>You are a bioluminescent drifter sinking into the deep. Weave between the reef pillars and jellyfish. The deeper you go, the faster the current pulls.</p>
+  <div class="keys"><kbd>&larr; &rarr;</kbd><kbd>&uarr; &darr;</kbd><kbd>W A S D</kbd></div>
+  <button id="startBtn">Dive</button>
+</div>
+
+<div class="overlay hidden" id="overScreen">
+  <h1>THE DEEP <span>CLAIMS YOU</span></h1>
+  <div class="final">You drifted down<b id="finalScore">0 m</b></div>
+  <div class="best" id="newBest"></div>
+  <button id="retryBtn">Dive Again</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="abyss.js">
+
+</script>
+</body>
+</html>
